@@ -1,0 +1,147 @@
+openapi: 3.0.0
+info:
+  title: jtw-API
+  contact: {}
+  version: "1.0"
+servers:
+  - url: https://jwt-mov-cef.herokuapp.com/api/v1
+    variables: {}
+paths:
+  /login:
+    post:
+      tags:
+        - Auth
+      summary: PROD_LOGIN
+      operationId: PROD_LOGIN
+      parameters: []
+      requestBody:
+        description: ""
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/PROD_LOGIN_REQUEST"
+            example:
+              email: email@gmail.com
+              password: Password123
+        required: true
+      responses:
+        "200":
+          description: ""
+          headers: {}
+      deprecated: false
+  /register:
+    post:
+      tags:
+        - Auth
+      summary: PROD_REGISTER
+      operationId: PROD_REGISTER
+      parameters: []
+      requestBody:
+        description: ""
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/PROD_REGISTER_REQUEST"
+            example:
+              username: Username
+              email: email@gmail.com
+              password: Password123
+        required: true
+      responses:
+        "200":
+          description: ""
+          headers: {}
+      deprecated: false
+  /refresh:
+    get:
+      tags:
+        - Auth
+      summary: PROD_REFRESH_TOKEN
+      operationId: PROD_REFRESH_TOKEN
+      parameters: []
+      responses:
+        "200":
+          description: ""
+          headers: {}
+      deprecated: false
+  /logout:
+    delete:
+      tags:
+        - Auth
+      summary: PROD_LOGOUT
+      operationId: PROD_LOGOUT
+      parameters: []
+      responses:
+        "200":
+          description: ""
+          headers: {}
+      deprecated: false
+  /user/users:
+    get:
+      tags:
+        - User
+      summary: PROD_GET_ALL_USER
+      operationId: PROD_GET_ALL_USER
+      responses:
+        "200":
+          description: ""
+          headers: {}
+      deprecated: false
+  /movie/movies/all:
+    get:
+      tags:
+        - Movie
+      summary: PROD_GET_ALL_MOVIE
+      operationId: PROD_GET_ALL_MOVIE
+      responses:
+        "200":
+          description: ""
+          headers: {}
+      deprecated: false
+components:
+  schemas:
+    PROD_LOGIN_REQUEST:
+      title: PROD_LOGIN_REQUEST
+      required:
+        - email
+        - password
+      type: object
+      properties:
+        email:
+          type: string
+        password:
+          type: string
+      example:
+        email: email@gmail.com
+        password: Password123
+    PROD_REGISTER_REQUEST:
+      title: PROD_REGISTER_REQUEST
+      required:
+        - username
+        - email
+        - password
+      type: object
+      properties:
+        username:
+          type: string
+        email:
+          type: string
+        password:
+          type: string
+      example:
+        username: Username
+        email: email@gmail.com
+        password: Password123
+  securitySchemes:
+    httpBearer:
+      type: http
+      scheme: bearer
+security:
+  - httpBearer: []
+tags:
+  - name: Auth
+    description: ""
+  - name: User
+    description: ""
+  - name: Movie
+    description: ""
